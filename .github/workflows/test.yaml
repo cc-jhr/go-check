@@ -1,0 +1,21 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - 'main'
+    paths-ignore:
+      - 'README.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Env
+        uses: actions/setup-go@v2
+        with:
+          go-version: '^1.16.6' # The Go version to download (if necessary) and use.
+      - run: go version
+      - run: go test
